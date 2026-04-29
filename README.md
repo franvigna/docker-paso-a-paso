@@ -8,6 +8,7 @@ Cada etapa agrega conceptos nuevos sobre la anterior, siguiendo una progresión 
 
 | Etapa | Tema | Tecnologías |
 |-------|------|-------------|
+| [etapa1](#etapa-1--instalación) | Instalación del entorno | Docker Desktop, WSL2, VS Code |
 | [etapa2](./etapa2) | Docker Compose + servidor web estático | Nginx |
 | [etapa3](./etapa3) | Base de datos como servicio | PostgreSQL |
 | [etapa4](./etapa4) | Construcción de imágenes personalizadas | Python, Dockerfile |
@@ -43,6 +44,29 @@ docker compose down -v
 ```
 
 ## Detalle de cada etapa
+
+### Etapa 1 — Instalación
+
+Antes de arrancar necesitás tener el entorno listo. Instalá las siguientes herramientas:
+
+- **Docker Desktop** — motor de contenedores con interfaz gráfica
+  - Windows/Mac: [docs.docker.com/get-docker](https://docs.docker.com/get-docker/)
+  - En Windows también instala automáticamente **WSL2** (subsistema Linux), que Docker necesita para funcionar
+
+- **Visual Studio Code** — editor recomendado
+  - [code.visualstudio.com](https://code.visualstudio.com/)
+  - Extensión recomendada: **Docker** (de Microsoft) — te permite ver contenedores, imágenes y volúmenes desde el editor
+
+Verificá que todo funcione abriendo una terminal y ejecutando:
+
+```bash
+docker --version
+docker compose version
+```
+
+Si ambos comandos devuelven una versión, estás listo para empezar.
+
+---
 
 ### Etapa 2 — Servidor web con Nginx
 Primer contacto con Docker Compose. Levanta un Nginx que sirve una página HTML estática desde un volumen local.
