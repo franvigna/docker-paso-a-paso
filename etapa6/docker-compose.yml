@@ -1,0 +1,25 @@
+services:
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secreto
+      POSTGRES_DB: becarios_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      # Script SQL que se ejecuta automáticamente al crear la base de datos
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      # Variable de entorno que lee main.py para conectarse
+      DATABASE_URL: postgresql://admin:secreto@db:5432/becarios_db
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:

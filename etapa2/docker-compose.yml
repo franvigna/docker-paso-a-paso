@@ -1,0 +1,21 @@
+# Docker Compose define uno o más "servicios" (contenedores)
+services:
+
+  # Nombre del servicio — lo elegimos nosotros, puede ser cualquier nombre
+  web:
+
+    # Imagen que vamos a usar (la descarga de Docker Hub si no existe)
+    image: nginx:alpine
+
+    # Mapeo de puertos: "puerto_en_tu_maquina:puerto_dentro_del_contenedor"
+    # Nginx escucha en el puerto 80 dentro del contenedor
+    # Nosotros lo exponemos en el 8080 de nuestra máquina
+    ports:
+      - "8080:80"
+
+    # Volúmenes: montan carpetas de tu máquina dentro del contenedor
+    # Así Nginx sirve nuestro HTML en vez del HTML por defecto
+    # "./html" es relativo al docker-compose.yml
+    # "/usr/share/nginx/html" es donde Nginx busca archivos para servir
+    volumes:
+      - ./html:/usr/share/nginx/html

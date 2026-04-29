@@ -1,0 +1,23 @@
+services:
+
+  db:
+    # Imagen oficial de PostgreSQL versión 16 (alpine = más liviana)
+    image: postgres:16-alpine
+
+    # Variables de entorno que Postgres lee al iniciarse por primera vez
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secreto
+      POSTGRES_DB: becarios_db
+
+    # Mapeo de puertos: accedemos a Postgres desde nuestra máquina en el 5432
+    ports:
+      - "5432:5432"
+
+    # Volumen nombrado: los datos persisten aunque el contenedor se elimine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+# Declaración del volumen nombrado (Docker lo administra)
+volumes:
+  postgres_data:

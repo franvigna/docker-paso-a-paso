@@ -1,0 +1,15 @@
+services:
+  api:
+    # Construye la imagen desde el Dockerfile en la carpeta actual
+    build: .
+
+    ports:
+      - "8000:8000"
+
+    # Reconstruye la imagen si hay cambios
+    # (en desarrollo es útil, en producción se usa la imagen ya construida)
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /app
